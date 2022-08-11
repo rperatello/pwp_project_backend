@@ -1,0 +1,35 @@
+{
+  "name": "pwp_backend",
+  "version": "1.0.0",
+  "description": "Projeto desenvolvido para a disciplina de PWP - SDM do Instituto Federal de Ciêcia e Tecnologia (IFSP) - Campus São Carlos.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "consign": "^0.1.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.7.0",
+    "jwt-simple": "^0.5.6",
+    "md5": "^2.3.0",
+    "mysql2": "^2.2.5",
+    "nodemon": "^2.0.11",
+    "passport": "^0.4.1",
+    "passport-jwt": "^4.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "author": "Paula Fernanda Milani, Luis Hideo Vasconcelos Nakamura, Roger Peratello.",
+  "license": "MIT",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": ""
+}
