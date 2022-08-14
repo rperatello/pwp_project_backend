@@ -12,17 +12,10 @@ USE `pwp_project`;
 
 CREATE TABLE IF NOT EXISTS `products` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `supermarket_id` int NOT NULL,
   `description` varchar(250) NOT NULL DEFAULT '',
+  `url_image` varchar(500) DEFAULT '',
   `price` double unsigned NOT NULL DEFAULT '0',
-  `updated_at` varchar(25) NOT NULL DEFAULT '',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
-
-CREATE TABLE IF NOT EXISTS `supermarkets` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(250) NOT NULL DEFAULT '',
+  `offer` boolean NOT NULL DEFAULT false,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -32,12 +25,12 @@ CREATE TABLE IF NOT EXISTS `users` (
   `login` varchar(250) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `name` varchar(250) DEFAULT NULL,
   `password` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
-  `isAdmin` tinyint NOT NULL DEFAULT '0',
+  `email` varchar(400) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `users` (`id`, `login`, `name`, `password`, `isAdmin`) VALUES
-	(1, 'admin', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', 1);
+INSERT INTO `users` (`id`, `login`, `name`, `password`, `email`) VALUES
+	(1, 'admin', 'Administrador', '21232f297a57a5a743894a0e4a801fc3', 'admin@pwp_project.com');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

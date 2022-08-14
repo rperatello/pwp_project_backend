@@ -1,25 +1,22 @@
 const authSecret = process.env.SECRET
 const jwt = require('jwt-simple')
 const md5 = require('md5');
-// const bcrypt = require('bcrypt-node-js')
 
-const banco = require("../database/conexao");
+const banco = require("../database/dbRepository");
 
-module.exports = app => {
+module.exports = _app => {
     const login = async (req, res) => {
         if (!req.body.login || !req.body.password) {
-            res.status(401).send({msg: "Informe usuário e senha!"})
+            res.status(401).send({message: "Informe usuário e senha!"})
         } else {
             const resultado = await banco.login({
                 login: req.body.login,
                 password: md5(req.body.password),
             });
-            // console.log("resultado: ", resultado)
-            if (!resultado || resultado == 400) { return res.status(400).send({msg: "Usuário não cadastrado!"}) }
-            if (resultado == 409) { return res.status(400).send({msg: "Senha não confere!"}) }
-            // const isMath = bcrypt.compareSync(req.body.senha, resultado.senha)
+            if (!resultado || resultado == 400) { return res.status(400).send({message: "Usuário não cadastrado!"}) }
+            if (resultado == 409) { return res.status(400).send({message: "Senha não confere!"}) }
             const isMath = md5(req.body.password) == resultado.password ? true : false
-            if (!isMath) { return res.status(401).send({msg: "Acesso negado!"}) }
+            if (!isMath) { return res.status(401).send({message: "Acesso negado!"}) }
             
             const now = Math.floor(Date.now())
             
@@ -40,19 +37,16 @@ module.exports = app => {
 
     const validateToken = async (req, res) => {
         try {
-            // console.log('req :>> ', req);
             const userData = req.headers.authorization || null
-            // console.log('userData :>> ', userData.substring(7))
             if (userData) {
                 const token = jwt.decode(userData.substring(7), authSecret)
-                // console.log('Exp do Token :>> ', new Date(token.exp));
                 if (new Date(token.exp) > new Date()) {
-                    return res.send({msg: "Token válido!"})
+                    return res.send({message: "Token válido!"})
                 }
             }
-            return res.status(401).send({msg: "Token expirado!"})
+            return res.status(401).send({message: "Token expirado!"})
         } catch (e) { 
-            return res.status(401).send({msg: "Token expirado!"})
+            return res.status(401).send({message: "Token com problema de assinatura!"})
         }
     }
 
