@@ -11,7 +11,7 @@ consign()
     .include('./config/passport.js')
     .then('./config/middlewares.js')
     .then('./config/auth.js')
-    .then('./rotas/rotas.js')
+    .then('./endpoints/endpoints.js')
     .into(app)
 
 /*LISTEN DO EXPRESS*/
