@@ -105,6 +105,7 @@ async function updateUser(user) {
         const sql = "UPDATE users SET name = ?, password = ?, email = ? WHERE id = ?;"
         const parameters = [user.name, user.password, user.email, user.id];
         [result] = await connection.query(sql, parameters)
+        console.log(result)
         return `Dados alterados com sucesso!`
     } catch (error) {
         throw error
@@ -170,6 +171,7 @@ async function deleteProduct(id) {
         let [result] = await connection.query("SELECT * FROM products WHERE id=?;", [id])
         if (result.length == 0) {return "Não existe produto com o ID informado!"}
         [result] = await connection.query("DELETE FROM products WHERE id=?", [id])
+        console.log(result);
         return `Produto excluído com sucesso!`        
     } catch (error) {
         throw error
